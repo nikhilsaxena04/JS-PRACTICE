@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>rock-paper-scissors-game</title>
+    </head>
+
+    <body>
+        <button onclick="playGame('rock')">Rock</button>
+
+        <button onclick="playGame('paper')">Paper</button>
+
+        <button onclick="playGame('scissors')">Scissors</button>
+
+        <script>
+            function playGame(playerMove){
+                const moves = ['rock', 'paper', 'scissors'];
+                const computerMove = moves[Math.floor(Math.random() * 3)];
+                /*
+                Math.random() generates a random decimal between 0 and 1.
+                Multiplying by 3 (Math.random() * 3) gives a range between 0 and 2.999.
+                Math.floor() rounds down to 0, 1, or 2
+                */
+
+                let result = '';
+                if(playerMove === computerMove){
+                    result = 'tie!';
+                } else if(
+                    (playerMove === 'rock' && computerMove === 'scissors') ||
+                    (playerMove === 'paper' && computerMove === 'rock') ||
+                    (playerMove === 'scissors' && computerMove === 'paper')
+                ){
+                    result = 'You win!';
+                } else {
+                    result = 'You lose!';
+                }
+                alert(`You picked ${playerMove}, Computer picked ${computerMove}, ${result}`)
+            }
+
+        </script>
+    </body>
+</html>
