@@ -9,7 +9,28 @@
             follow();
         "class = "followButton">Follow</button>
 
+
+        <p>Shipping Calculator</p>
+        <input placeholder="Enter Amount" 
+            class="js-cost-input" 
+            onkeydown="handleCostKeyDown(event);
+        ">
+
+        <button onclick="
+            calculateTotal();
+        ">Calculate</button>
+
+        <p class = "js-total-cost"></p>
+
         <script>
+
+            window.alert('Hello World');
+
+            function handleCostKeyDown(event) {
+                if (event.key === 'Enter') {
+                    calculateTotal();
+                };
+            };
 
             function follow() {
                 const followButton = document.querySelector('.followButton');
@@ -20,6 +41,18 @@
                     followButton.innerText = 'Follow';
                 };
             };
+
+            function calculateTotal() {
+                const inputElement = document.querySelector('.js-cost-input');
+                let cost = Number(inputElement.value); //dom translates everything to string, so we need to convert it to number
+                if (cost < 40) {
+                    cost += 10;
+                } else {
+                    cost = cost;
+                };
+
+                document.querySelector('.js-total-cost').innerHTML = `Total cost is $${cost}`;
+            }
 
         </script>
     </body>
