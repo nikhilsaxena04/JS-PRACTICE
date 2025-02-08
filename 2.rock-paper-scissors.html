@@ -11,7 +11,22 @@
 
         <button onclick="playGame('scissors')">Scissors</button>
 
+        <button onclick="
+            score.wins =score.losses = score.ties = 0
+        ">Reset Score</button>
+
         <script>
+            const score = {
+                    wins: 0,
+                    losses: 0,
+                    ties: 0
+                };
+
+                //console.log(JSON.stringify(score)); //shows results in console
+                // console.log(JSON.parse(JSON.stringify(score)));
+                //score is an js object and can be converted to json object using JSON.stringify as strings, function can't be converted to json object
+                //JSON.parse(JSON.stringify(score)) is used to convert json object to js object
+
             function playGame(playerMove){
                 const moves = ['rock', 'paper', 'scissors'];
                 const computerMove = moves[Math.floor(Math.random() * 3)];
@@ -22,27 +37,21 @@
                 */
 
                 let result = '';
-                const score {
-                    wins: 0,
-                    losses: 0,
-                    ties: 0
-                }
-
                 if(playerMove === computerMove){
                     result = 'tie!';
-                    ties += 1;
+                    score.ties++;
                 } else if(
                     (playerMove === 'rock' && computerMove === 'scissors') ||
                     (playerMove === 'paper' && computerMove === 'rock') ||
                     (playerMove === 'scissors' && computerMove === 'paper')
                 ){
                     result = 'You win!';
-                    wins += 1;
+                    score.wins++;
                 } else {
                     result = 'You lose!';
-                    losses += 1;
+                    score.losses++;
                 }
-                alert(`You picked ${playerMove}, Computer picked ${computerMove}, ${result}`, ${score},)`);
+                alert(`You picked ${playerMove}, Computer picked ${computerMove}, ${result}, Wins: ${score.wins}, Losses: ${score.losses}, Ties: ${score.ties}`);
             }
 
         </script>
