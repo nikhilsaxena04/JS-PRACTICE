@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>rock-paper-scissors-game</title>
+        <link rel="stylesheet" href="styles/2a.rock-paper-scissors.css">
+    </head>
+
+    <body>
+        <button onclick="playGame('rock')">
+            <img src="images/rock-emoji.png" 
+                class="move-icon">
+        </button>
+
+        <button onclick="playGame('paper')">
+            <img src="images/paper-emoji.png"
+                class="move-icon">
+        </button>
+
+        <button onclick="playGame('scissors')">
+            <img src="images/scissors-emoji.png"
+                class="move-icon">
+        </button>
+
+        <p class="js-moves"></p>
+
+        <p class="js-result"></p>
+
+        <p class="js-score"></p>
+
+        <button onclick="
+            score.wins = score.losses = score.ties = 0;
+            localStorage.removeItem('score'); //like clear cache
+            updateScoreElement();
+            ">Reset Score
+        </button>
+
+        <script src="scripts/2a.rock-paper-scissors.js"></script>
+
+    </body>
+</html>
+
+
+
+
+
+<!--
+shortcuts for if statements, truthy falsy values, and ternary operators
+
+     Ternary Operator (? :): Acts as a concise if-else statement.
+             condition ? valueIfTrue : valueIfFalse;
+
+
+     Logical AND (&&):
+         Conditional Execution: Executes the right-hand side only if the left-hand side is truthy.
+             condition && doSomething();
+
+
+          Value Return: Returns the right-hand side if the left-hand side is truthy.
+             const value = condition && someValue;
+
+
+     Logical OR (||): Returns the first truthy value, allowing for simple default value assignment.
+             const variable = valueThatMayBeFalsy || defaultValue;
+
+practice until exercise 6
+-->

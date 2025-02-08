@@ -2,6 +2,23 @@
 <html>
     <head>
         <title>DOM</title>
+        <style>
+            .followButton {
+                background-color: rgb(46, 46, 46);
+                color: white;
+                border: none;
+                padding: 10px 20px;
+                border-radius: 10px;
+                font-weight: bold;
+                cursor: pointer;
+            }
+
+            .is-followed {
+                background-color: rgb(227, 227, 227);
+                color: rgb(46, 46, 46);
+            }
+
+        </style>
     </head>
 
     <body>
@@ -24,7 +41,22 @@
 
         <script>
 
-            window.alert('Hello World');
+            //window.alert('Hello World');
+
+            function follow() {
+                const followButton = document.querySelector
+                    ('.followButton');
+                
+                if (followButton.innerText === 'Follow'){
+                    followButton.innerText = 'Followed';
+                    followButton.classList.add
+                        ('is-followed');
+                } else {
+                    followButton.innerText = 'Follow';
+                    followButton.classList.remove
+                        ('is-followed');
+                };
+            };
 
             function handleCostKeyDown(event) {
                 if (event.key === 'Enter') {
@@ -32,18 +64,9 @@
                 };
             };
 
-            function follow() {
-                const followButton = document.querySelector('.followButton');
-                
-                if (followButton.innerText === 'Follow'){
-                    followButton.innerText = 'Followed';
-                } else {
-                    followButton.innerText = 'Follow';
-                };
-            };
-
             function calculateTotal() {
-                const inputElement = document.querySelector('.js-cost-input');
+                const inputElement = document.querySelector
+                    ('.js-cost-input');
                 let cost = Number(inputElement.value); //dom translates everything to string, so we need to convert it to number
                 if (cost < 40) {
                     cost += 10;
