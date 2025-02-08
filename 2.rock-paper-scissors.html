@@ -11,21 +11,42 @@
 
         <button onclick="playGame('scissors')">Scissors</button>
 
+        <p class="js-moves"></p>
+
+        <p class="js-result"></p>
+
+        <p class="js-score"></p>
+
         <button onclick="
-            score.wins =score.losses = score.ties = 0
+            score.wins =score.losses = score.ties = 0;
+            localStorage.removeItem('score'); //like clear cache
+            updateScoreElement();
         ">Reset Score</button>
 
         <script>
-            const score = {
+
+            const score = JSON.parse(localStorage.getItem('score')) || {
                     wins: 0,
                     losses: 0,
                     ties: 0
-                };
+            };
+            // || default operator, if left side is falsy, output right side
+            updateScoreElement();
 
-                //console.log(JSON.stringify(score)); //shows results in console
-                // console.log(JSON.parse(JSON.stringify(score)));
-                //score is an js object and can be converted to json object using JSON.stringify as strings, function can't be converted to json object
-                //JSON.parse(JSON.stringify(score)) is used to convert json object to js object
+            // const score = {
+            //         wins: 0,
+            //         losses: 0,
+            //         ties: 0
+            //     };
+            
+            // console.log(JSON.parse(localStorage.getItem('score')));
+                // //retrieves scores from local storage
+
+
+                    //     //console.log(JSON.stringify(score)); //shows results in console
+                    //     // console.log(JSON.parse(JSON.stringify(score)));
+                    //     //score is an js object and can be converted to json object using JSON.stringify as strings, function can't be converted to json object
+                    //     //JSON.parse(JSON.stringify(score)) is used to convert json object to js object
 
             function playGame(playerMove){
                 const moves = ['rock', 'paper', 'scissors'];
@@ -51,32 +72,50 @@
                     result = 'You lose!';
                     score.losses++;
                 }
-                alert(`You picked ${playerMove}, Computer picked ${computerMove}, ${result}, Wins: ${score.wins}, Losses: ${score.losses}, Ties: ${score.ties}`);
+
+                localStorage.setItem('score', JSON.stringify(score));
+                //saved scores in local storage
+                
+                updateScoreElement();
+
+                document.querySelector('.js-result').innerHTML = result
+
+                document.querySelector('.js-moves').innerHTML = `You picked ${playerMove} - Computer picked ${computerMove}`;
             }
+            
+            //     alert(`You picked ${playerMove}, Computer picked ${computerMove}, ${result}, Wins: ${score.wins}, Losses: ${score.losses}, Ties: ${score.ties}`);
+            // }
+
+            function updateScoreElement() {
+                    document.querySelector('.js-score').innerHTML = `Wins: ${score.wins}, Losses: ${score.losses}, Ties: ${score.ties}`;
+            };
 
         </script>
     </body>
 </html>
 
 
+
+
+
 <!--
 shortcuts for if statements, truthy falsy values, and ternary operators
 
-    Ternary Operator (? :): Acts as a concise if-else statement.
-            condition ? valueIfTrue : valueIfFalse;
+     Ternary Operator (? :): Acts as a concise if-else statement.
+             condition ? valueIfTrue : valueIfFalse;
 
 
-    Logical AND (&&):
-        Conditional Execution: Executes the right-hand side only if the left-hand side is truthy.
-            condition && doSomething();
+     Logical AND (&&):
+         Conditional Execution: Executes the right-hand side only if the left-hand side is truthy.
+             condition && doSomething();
 
 
-         Value Return: Returns the right-hand side if the left-hand side is truthy.
-            const value = condition && someValue;
+          Value Return: Returns the right-hand side if the left-hand side is truthy.
+             const value = condition && someValue;
 
 
-    Logical OR (||): Returns the first truthy value, allowing for simple default value assignment.
-            const variable = valueThatMayBeFalsy || defaultValue;
+     Logical OR (||): Returns the first truthy value, allowing for simple default value assignment.
+             const variable = valueThatMayBeFalsy || defaultValue;
 
 practice until exercise 6
 -->

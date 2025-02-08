@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>DOM</title>
+    </head>
+
+    <body>
+        <button onclick = "
+            follow();
+        "class = "followButton">Follow</button>
+
+        <script>
+
+            function follow() {
+                const followButton = document.querySelector('.followButton');
+                
+                if (followButton.innerText === 'Follow'){
+                    followButton.innerText = 'Followed';
+                } else {
+                    followButton.innerText = 'Follow';
+                };
+            };
+
+        </script>
+    </body>
+</html>
