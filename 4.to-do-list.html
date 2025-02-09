@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>ToDo List</title>
+    </head>
+
+
+    
+
+    <body>
+        <p>ToDo List</p>
+
+        <input placeholder="Enter ToDo"
+            class="js-todo-input">
+
+        <button onclick="
+            addTask();
+        ">Add</button>
+
+        <div class="js-todo-list"></div> <!-- js will update list of tasks dynamically when new tasks are added -->
+    </body>
+
+
+
+
+    <script>
+        const toDoList = [];
+
+        renderToDoList();
+
+        function renderToDoList() {
+
+            let toDoListHTML = '';
+            // Create an empty string to store the HTML for the tasks
+
+            for( let i = 0; i < toDoList.length; i++) {
+                const toDo = toDoList[i];
+                    // get the task at index i
+                const html = 
+                    `<p>
+                        ${toDo}
+                        <button onclick="
+                            toDoList.splice(${i}, 1);
+                            renderToDoList();
+                        ">Delete</button>
+                    </p>`;
+                    // Create an HTML paragraph for the task and delete using splice(index, how many values to remove i.e 1 here)
+                toDoListHTML += html; //final list
+            }
+
+            document.querySelector('.js-todo-list').innerHTML = toDoListHTML; //update the page
+        }
+
+        function addTask() {
+            const inputElement = document.querySelector('.js-todo-input')
+            const task= inputElement.value;
+
+            toDoList.push(task);
+            console.log(toDoList);
+
+            inputElement.value = '';
+            renderToDoList();
+        }
+    </script>
+</html>
