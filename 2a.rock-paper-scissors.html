@@ -27,12 +27,18 @@
 
         <p class="js-score"></p>
 
-        <button onclick="
-            score.wins = score.losses = score.ties = 0;
-            localStorage.removeItem('score'); //like clear cache
-            updateScoreElement();
+        <button class="reset-score-button" 
+            onclick="
+                score.wins = score.losses = score.ties = 0;
+                localStorage.removeItem('score'); //like clear cache
+                updateScoreElement(); 
             ">Reset Score
         </button>
+
+        <button class="auto-play-button"
+            onclick="
+                autoPlay();
+        ">Auto Play</button>
 
         <script src="scripts/2a.rock-paper-scissors.js"></script>
 

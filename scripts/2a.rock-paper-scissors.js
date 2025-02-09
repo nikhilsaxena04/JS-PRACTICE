@@ -21,6 +21,21 @@ updateScoreElement();
     //     //score is an js object and can be converted to json object using JSON.stringify as strings, function can't be converted to json object
     //     //JSON.parse(JSON.stringify(score)) is used to convert json object to js object
 
+    let isAutoPlaying = false;
+    let intervalId; //stores interval id
+function autoPlay() {
+    if(!isAutoPlaying) { //prevents multiple intervals
+        intervalId = setInterval(function() {
+             const playerMove = ['rock', 'paper', 'scissors'][Math.floor(Math.random() * 3)];
+             playGame(playerMove);
+        }, 1000);
+        isAutoPlaying = true;
+    } else {
+        clearInterval(intervalId);
+        isAutoPlaying = false; //stops or reset interval
+    }
+}
+
 function playGame(playerMove){
     const moves = ['rock', 'paper', 'scissors'];
     const computerMove = moves[Math.floor(Math.random() * 3)];
