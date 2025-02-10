@@ -34,5 +34,25 @@
     button.addEventListener('mouseleave', () => {
       console.log('mouseleave');
     });
+
+
+    // check in console
+    // map transforms an array into another array 
+    // filter returns new array of elements which met condition
+    //learn closures from gpt
+    console.log([2, -7, 6, -8].filter((value, index) => {
+      return value >= 0;
+      // if (value >0) {
+      //   return true;
+      // } else {
+      //   return false;
+      // }
+    }));
+
+    console.log([2, 4, 7, 8].map((value, index) => {
+      return value * 10;
+    })); 
+
+    console.log([2, 4, 7, 8].map(value => value * 10));  //cleaner shorthand
   </script>
 </html>
