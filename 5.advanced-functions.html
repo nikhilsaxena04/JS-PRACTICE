@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>
+      Advanced Functions
+    </title>
+  </head>
+
+  <body>
+    <button onclick="" class="js-button">Click</button>
+  </body>
+
+  <script>
+    const button = document.querySelector('.js-button');
+
+    const eventListener = () => {
+      console.log('clicked');
+    };
+
+    button.addEventListener('click', eventListener);
+
+    button.removeEventListener('click', eventListener);
+
+    button.addEventListener('click', () => {
+      console.log('clicked2');
+    });
+
+
+    //onlcick handles single event whule addEventListener can handle multiple events
+    button.addEventListener('mouseenter', () => {
+      console.log('mouseenter');
+    });
+
+    button.addEventListener('mouseleave', () => {
+      console.log('mouseleave');
+    });
+  </script>
+</html>
