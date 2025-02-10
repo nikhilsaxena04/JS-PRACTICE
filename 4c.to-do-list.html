@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>ToDo List</title>
+        <link rel="stylesheet" href="styles/4b.to-do-list.css">
+    </head>
+
+    <body>
+        <p>To-Do List</p>
+
+        <div class="todo-input-grid">
+
+            <input placeholder="Enter ToDo"
+                class="js-todo-input">
+    
+            <input type="date"
+                class="js-todo-due-date-input">
+    
+            <input type="time"
+                class="js-todo-due-time-input">
+    
+            <button class="js-add-todo-button" //onclick="addTask();
+            ">Add</button>
+    
+            <div class="js-todo-list todo-grid"></div> <!-- js will update list of tasks dynamically when new tasks are added -->
+
+        </div>
+    </body>
+
+
+
+
+    <script>
+        const toDoList = [];
+
+        renderToDoList();
+
+        function renderToDoList() {
+
+            let toDoListHTML = '';
+            // Create an empty string to store the HTML for the tasks
+
+            toDoList.forEach(function(toDoObject, index){
+                const {name, dueDate, dueTime} = toDoObject; //destructuring shorthand
+                        // get the task at index i
+
+                const html = `
+                        <div>${name}</div>
+                        <div>${dueDate}</div>
+                        <div>${dueTime}</div>
+                        <button onclick="
+                            toDoList.splice(${index}, 1);
+                            renderToDoList();
+                        ">Delete</button>
+                    `;
+                    // Create an HTML paragraph for the task and delete using splice(index, how many values to remove i.e 1 here)
+                toDoListHTML += html;
+            })
+            document.querySelector('.js-todo-list').innerHTML = toDoListHTML; //update the page
+        }
+
+
+        document.querySelector('.js-add-todo-button').addEventListener('click', () =>{
+            addTask();
+        });
+
+
+        function addTask() {
+            const inputElement = document.querySelector('.js-todo-input')
+            const task= inputElement.value;
+
+            const dueDateInputElement = document.querySelector('.js-todo-due-date-input');
+            const dueDate = dueDateInputElement.value;
+
+            const dueTimeInputElement = document.querySelector('.js-todo-due-time-input');
+            const dueTime = dueTimeInputElement.value;
+
+            toDoList.push({
+                name: task,
+                dueTime: dueTime,
+                dueDate: dueDate, //can also be written as 
+                // dueDate
+            });
+
+            inputElement.value = '';
+            renderToDoList();
+        }
+    </script>
+</html>
