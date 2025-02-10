@@ -19,7 +19,7 @@
             <input type="time"
                 class="js-todo-due-time-input">
     
-            <button class="js-add-todo-button" //onclick="addTask();
+            <button class="js-add-todo-button" 
             ">Add</button>
     
             <div class="js-todo-list todo-grid"></div> <!-- js will update list of tasks dynamically when new tasks are added -->
@@ -48,19 +48,25 @@
                         <div>${name}</div>
                         <div>${dueDate}</div>
                         <div>${dueTime}</div>
-                        <button onclick="
-                            toDoList.splice(${index}, 1);
-                            renderToDoList();
-                        ">Delete</button>
+                        <button
+                            class="js-delete-todo-button">Delete
+                        </button>
                     `;
                     // Create an HTML paragraph for the task and delete using splice(index, how many values to remove i.e 1 here)
                 toDoListHTML += html;
             })
             document.querySelector('.js-todo-list').innerHTML = toDoListHTML; //update the page
+            document.querySelectorAll('.js-delete-todo-button') //selects all delete button and put them in array with indices
+                .forEach((deleteButton, index) => {
+                    deleteButton.addEventListener('click', () => {
+                        toDoList.splice(index, 1);
+                            renderToDoList();
+                    });
+                });
         }
 
 
-        document.querySelector('.js-add-todo-button').addEventListener('click', () =>{
+        document.querySelector('.js-add-todo-button').addEventListener('click', () => {
             addTask();
         });
 
