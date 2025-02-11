@@ -55,7 +55,7 @@ products.forEach((product) =>{
         class="add-to-cart-button button-primary
         js-add-to-cart"
 
-        data-product-name="${product.name}">
+        data-product-id="${product.id}">
 
           Add to Cart
       </button>
@@ -70,7 +70,7 @@ document.querySelectorAll('.js-add-to-cart')
     button.addEventListener('click', () => {
       //console.log("added product");
       //console.log(button.dataset.productName);
-      const productName = button.dataset.productName;
+      const productId = button.dataset.productId;
       /*
           HTML uses kebab-case (data-product-name).
           JavaScript automatically converts it to camelCase (productName).
@@ -82,7 +82,7 @@ document.querySelectorAll('.js-add-to-cart')
       let matchingItem;
 
       cart.find((item) => { //.find used instead of .forEach, to stop searching after product is found
-        if (productName === item.productName) {
+        if (productId === item.productId) {
           matchingItem = item;
         }
       });
@@ -91,7 +91,7 @@ document.querySelectorAll('.js-add-to-cart')
         matchingItem.quantity += 1;
       } else {
         cart.push({
-          productName: productName,
+          productName: productId,
           quantity : 1
       });
     }
