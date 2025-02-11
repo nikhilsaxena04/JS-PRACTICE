@@ -4,5 +4,7 @@
 			"path": "."
 		}
 	],
-	"settings": {}
+	"settings": {
+		"webviewPanel.setListenPort": 52462
+	}
 }
