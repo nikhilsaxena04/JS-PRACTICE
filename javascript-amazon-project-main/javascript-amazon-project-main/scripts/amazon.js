@@ -1,4 +1,5 @@
 import {cart} from '../data/cart.js';
+import {products} from '../data/products.js'
 //loading products from product.js
 
 let productsHTML = ''; //accumulator
