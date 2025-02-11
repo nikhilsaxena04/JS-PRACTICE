@@ -77,10 +77,24 @@ document.querySelectorAll('.js-add-to-cart')
           dataset is an Object that Stores data- Attributes
           JavaScript provides element.dataset, which automatically converts data- attributes into properties inside an object
       */
-      cart.push({
-        productName: productName,
-        quantity : 1
+
+
+      let matchingItem;
+
+      cart.find((item) => { //.find used instead of .forEach, to stop searching after product is found
+        if (productName === item.productName) {
+          matchingItem = item;
+        }
       });
-      console.log(cart)
-    });
+
+      if (matchingItem) {
+        matchingItem.quantity += 1;
+      } else {
+        cart.push({
+          productName: productName,
+          quantity : 1
+      });
+    }
+      console.log(cart);
+  });
 });
