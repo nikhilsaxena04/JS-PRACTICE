@@ -1,4 +1,4 @@
-import {cart} from '../data/cart.js';
+import {cart, addToCart} from '../data/cart.js';
 import {products} from '../data/products.js'
 //loading products from product.js
 
@@ -67,6 +67,20 @@ products.forEach((product) =>{
 
 document.querySelector('.js-products-grid').innerHTML = productsHTML;
 
+function updateCartQuantity() {
+  let cartQuantity = 0;
+      cart.forEach((cartItem) => {
+        cartQuantity += cartItem.quantity;
+      });
+
+      document.querySelector('.js-cart-quantity')
+        .innerHTML = cartQuantity;
+
+          // console.log(cartQuantity)
+          // console.log(cart);
+          //calculating total quantity of the cart
+}
+
 document.querySelectorAll('.js-add-to-cart')
   .forEach((button) => {
     button.addEventListener('click', () => {
@@ -79,35 +93,7 @@ document.querySelectorAll('.js-add-to-cart')
           dataset is an Object that Stores data- Attributes
           JavaScript provides element.dataset, which automatically converts data- attributes into properties inside an object
       */
-
-
-      let matchingItem;
-
-      cart.find((item) => { //.find used instead of .forEach, to stop searching after product is found
-        if (productId === item.productId) {
-          matchingItem = item;
-        }
-      });
-
-      if (matchingItem) {
-        matchingItem.quantity += 1;
-      } else {
-        cart.push({
-          productId: productId,
-          quantity : 1
-      });
-    }
-
-    //calculating total quantity of the cart
-    let cartQuantity = 0;
-    cart.forEach((item) => {
-      cartQuantity += item.quantity;
-    });
-
-    document.querySelector('.js-cart-quantity')
-      .innerHTML = cartQuantity;
-
-        // console.log(cartQuantity)
-        // console.log(cart);
+      addToCart(productId);
+      updateCartQuantity();
   });
 });
