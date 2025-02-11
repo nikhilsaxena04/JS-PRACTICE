@@ -1,3 +1,4 @@
+import {cart} from '../data/cart.js';
 //loading products from product.js
 
 let productsHTML = ''; //accumulator
@@ -105,7 +106,7 @@ document.querySelectorAll('.js-add-to-cart')
     document.querySelector('.js-cart-quantity')
       .innerHTML = cartQuantity;
 
-    console.log(cartQuantity)
-    console.log(cart);
+        // console.log(cartQuantity)
+        // console.log(cart);
   });
 });
