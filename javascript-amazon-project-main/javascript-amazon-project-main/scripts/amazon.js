@@ -76,7 +76,7 @@ function updateCartQuantity() {
       document.querySelector('.js-cart-quantity')
         .innerHTML = cartQuantity;
 
-          console.log(cartQuantity)
+          //console.log(cartQuantity)
           // console.log(cart);
           //calculating total quantity of the cart
 }
