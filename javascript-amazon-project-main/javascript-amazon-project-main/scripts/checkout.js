@@ -111,6 +111,7 @@ document.querySelector('.js-order-summary')
         removeFromCart(productId);
         //console.log(cart);
         const container = document.querySelector(`.js-cart-item-container-${productId}`);
-        console.log(container);
+        //console.log(container);
+        container.remove();
       });
     });
