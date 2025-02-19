@@ -50,3 +50,16 @@ export function removeFromCart(productId) {
 
   saveToStorage();
 };
+
+export function updateDeliveryOption(productId, deliveryOptionsId) {  
+  let matchingItem;
+
+  cart.find((cartItem) => { //.find used instead of .forEach, to stop searching after product is found
+    if (productId === cartItem.productId) {
+      matchingItem = cartItem;
+    }
+  });
+
+  matchingItem.deliveryOptionsId = deliveryOptionsId;
+  saveToStorage();
+}
