@@ -3,6 +3,7 @@ import { products, getProduct } from '../../data/products.js';
 import { formatCurrency } from '../utils/money.js';
 import dayjs from 'https://unpkg.com/dayjs@1.11.10/esm/index.js'; //default import(only one per file); ESM version of dayjs
 import { deliveryOptions, getDeliveryOption } from '../../data/deliveryOptions.js';
+import { renderPaymentSummary } from './paymentSummary.js';
 
 // const today = dayjs(); //external library, read docs
 // const deliveryDate = today.add(7, 'day'); // 7 days from now
@@ -118,6 +119,8 @@ export function renderOrderSummary(){
         const container = document.querySelector(`.js-cart-item-container-${productId}`);
         //console.log(container);
         container.remove();
+
+        renderPaymentSummary();
       });
   });
   
@@ -127,6 +130,7 @@ export function renderOrderSummary(){
         const {productId, deliveryOptionId} = element.dataset;
         updateDeliveryOption(productId, deliveryOptionId);
         renderOrderSummary();
+        renderPaymentSummary();
       });
   });
 }
