@@ -4,17 +4,17 @@
 -after we crete the object, we can run it in constructor to setup the object
 */
 class Cart {
-  cartItems;
-  localStorageKey;
+  cartItems; //public property
+  #localStorageKey; //private property, can't be accessed from outside of class
 
   constructor(localStorageKey) { /*setup code*/
-    this.localStorageKey = localStorageKey;
-    this.loadFromStorage();
+    this.#localStorageKey = localStorageKey;
+    this.#loadFromStorage();
   } // this points to object we generate
 
 
-  loadFromStorage() {
-    this.cartItems = JSON.parse(localStorage.getItem(this.localStorageKey));
+  #loadFromStorage() {
+    this.cartItems = JSON.parse(localStorage.getItem(this.#localStorageKey));
     
     if (!this.cartItems) {
       this.cartItems = [{
@@ -31,7 +31,7 @@ class Cart {
 
 
   saveToStorage() {
-    localStorage.setItem(this.localStorageKey, JSON.stringify(this.cartItems));
+    localStorage.setItem(this.#localStorageKey, JSON.stringify(this.cartItems));
   }
 
 
